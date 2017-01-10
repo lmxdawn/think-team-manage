@@ -4,20 +4,24 @@ namespace app\admin\controller;
 
 
 use think\Config;
+use think\Controller;
+use think\Request;
 
 
 /**
  * Class Base 基础控制器
  * @package app\admin\controller
  */
-class Base
+class Base extends Controller
 {
 
     /**
      * 构架函数
      * Base constructor.
      */
-    public function __construct($config = []) {
+    public function __construct(Request $request = null) {
+
+        parent::__construct($request);
 
         $debug = Config::get('app_debug');
 
@@ -31,6 +35,16 @@ class Base
             //正式环境
 
         }
+
+    }
+
+
+    public function base(){
+
+
+        $this->view->fetch('base',[
+            'title' => '后台'
+        ]);
 
     }
 

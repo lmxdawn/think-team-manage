@@ -7,7 +7,7 @@ namespace app\admin\controller;
  * Class Index 后台模块首页
  * @package app\admin\controller
  */
-class Index extends Base
+class Test extends Base
 {
 
     /**

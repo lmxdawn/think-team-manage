@@ -39,13 +39,4 @@ class Base extends Controller
     }
 
 
-    public function base(){
-
-
-        $this->view->fetch('base',[
-            'title' => '后台'
-        ]);
-
-    }
-
 }

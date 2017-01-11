@@ -7,7 +7,7 @@ namespace app\admin\controller;
  * Class Index 后台模块首页
  * @package app\admin\controller
  */
-class Test extends Base
+class Main extends Base
 {
 
     /**
@@ -15,6 +15,10 @@ class Test extends Base
      */
     public function index(){
 
+
+        for ($i = 0; $i < 100000000;$i++){
+
+        }
 
         return $this->view->fetch('index',[
             'title'     =>      '首页'

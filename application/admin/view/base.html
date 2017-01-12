@@ -17,24 +17,30 @@
     {block name="css"}{/block}
 
 </head>
-<body>
+
+<body style="overflow-x: hidden;">
 
 
 
-<!--主体-->
-{block name="body"}{/block}
+    <div style="padding: 20px 20px 70px;">
 
-<!--公共顶部-->
-{block name="basejs"}{include file="basejs" /}{/block}
+        <!--主体-->
+        {block name="body"}{/block}
+
+    </div>
+
+    <!--公共顶部-->
+    {block name="basejs"}{include file="basejs" /}{/block}
 
 
-<!--JS引用-->
-{block name="js"}{/block}
+    <!--JS引用-->
+    {block name="js"}{/block}
 
-<!--页面JS脚本-->
-{block name="script"}{/block}
+    <!--页面JS脚本-->
+    {block name="script"}{/block}
 
 
 
 </body>
+
 </html>

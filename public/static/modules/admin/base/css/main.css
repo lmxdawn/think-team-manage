@@ -28,6 +28,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     position: absolute;
     top: 0;
     width: 199px;
+    height: 100%;
 }
 
 .lmx .lmx-left::before {
@@ -51,7 +52,6 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     left: 0;
     position: absolute;
     right: 0;
-    overflow-y: auto;
     height: 100%;
     /*background: #2f4050 none repeat scroll 0 0;*/
 }

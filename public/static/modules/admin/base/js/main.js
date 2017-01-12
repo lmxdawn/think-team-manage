@@ -6,13 +6,21 @@
  */
 
 
-layui.link(sys_config.lmx_static_url + '/modules/admin/base/css/main.css?t='+ sys_config.lmx_version); //基础css
-
 layui.extend({ //设定组件别名
     'sidebarMenu': 'admin/sidebarMenu' //相对于上述base目录的子目录 （如果sidebarMenu.js是在根目录，也可以不用设定别名 ）
 });
 
 layui.use(['sidebarMenu'],function () {
+
+    var task_item_tpl = '<li class="lmx-tabitem">' +
+        '<span class="lmx-tabitem-text" title=""></span>' +
+        '<a class="lmx-tabitem-tabclose" href="javascript:void(0);" title="点击关闭标签">' +
+        '<span></span>' +
+        '<b class="lmx-tabitem-tabclose-icon">×</b>' +
+        '</a>' +
+        '</li>';
+
+    var appiframe_tpl='<iframe style="width: 100%; height: 100%;" frameborder="0" class="appiframe"></iframe>';
 
     var $lmx_tab = $("#lmx-tab")
         ,tabwidth = 118
@@ -136,11 +144,13 @@ layui.use(['sidebarMenu'],function () {
                 //关闭
                 $("#lmx-left").animate({'left' : -200 + 'px'}, 300, 'swing')
                 $("#lmx-content").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
+                $("#lmx-header").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
                 $this.removeClass('fa-angle-left').addClass('fa-angle-right').attr('title','展开侧边栏');
             }else if ($this.hasClass('fa-angle-right')){
                 // 展开
                 $("#lmx-left").animate({'left' : 0 + 'px'}, 300, 'swing')
                 $("#lmx-content").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
+                $("#lmx-header").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
                 $this.removeClass('fa-angle-right').addClass('fa-angle-left').attr('title','关闭侧边栏');
             }
             return false;
@@ -157,6 +167,11 @@ layui.use(['sidebarMenu'],function () {
 
 
         })
+
+
+        // 页面初始化完成加载首页
+        loadIndex();
+
 
     })
 
@@ -193,15 +208,22 @@ layui.use(['sidebarMenu'],function () {
 
     }
 
-    var task_item_tpl = '<li class="lmx-tabitem">' +
-                            '<span class="lmx-tabitem-text" title=""></span>' +
-                            '<a class="lmx-tabitem-tabclose" href="javascript:void(0);" title="点击关闭标签">' +
-                            '<span></span>' +
-                            '<b class="lmx-tabitem-tabclose-icon">×</b>' +
-                            '</a>' +
-                        '</li>';
 
-    var appiframe_tpl='<iframe style="width: 100%; height: 100%;" frameborder="0" class="appiframe"></iframe>';
+
+
+    /**
+     * 加载首页
+     */
+    function loadIndex() {
+        var $this = $("#lmx-tab li:eq(0)");
+        $(".appiframe").hide();
+        $loading.show();
+        $appiframe=$(appiframe_tpl).attr("src",$this.attr("app-url")).attr("id","appiframe-"+$this.attr("app-id"));
+        $appiframe.appendTo("#lmx-main");
+        $appiframe.load(function(){
+            $loading.hide();
+        });
+    }
 
     /**
      * 打开网页
@@ -225,7 +247,7 @@ layui.use(['sidebarMenu'],function () {
             $appiframe.load(function(){
                 $loading.hide();
             });
-
+            // 调整页面
             calcTaskitemsWidth();
         } else {
             $app.addClass("current");

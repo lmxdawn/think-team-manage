@@ -2,8 +2,6 @@
  扩展一个手风琴菜单组件
  **/
 
-//手风琴样式文件
-layui.link(sys_config.lmx_static_url + '/extend/admin/sidebarMenu.css?t='+ sys_config.lmx_version);
 
 layui.define(function(exports){ //提示：组件也可以依赖其它组件，如：layui.define('layer', callback);
     var obj = {

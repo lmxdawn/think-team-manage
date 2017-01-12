@@ -13,6 +13,10 @@
 
     {block name="basecss"}{include file="basecss" /}{/block}
 
+    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/css/main.css?t={$Think.config.sys_config.lmx_version}" >
+    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/extend/admin/sidebarMenu.css?t={$Think.config.sys_config.lmx_version}" >
+
+
     <!--CSS引用-->
     {block name="css"}{/block}
 
@@ -229,7 +233,7 @@
 
             <!--主体-->
             <div class="lmx-main" id="lmx-main">
-                <iframe src="{:url('main/index')}" style="width: 100%; height: 100%;" frameborder="0" id="appiframe-0" class="appiframe"></iframe>
+                <!--<iframe src="{:url('main/index')}" style="width: 100%; height: 100%;" frameborder="0" id="appiframe-0" class="appiframe"></iframe>-->
             </div>
 
 

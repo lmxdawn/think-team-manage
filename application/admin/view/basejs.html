@@ -19,9 +19,15 @@
         ,base: sys_config.lmx_static_url + '/extend/' //设定扩展的Layui组件的所在目录，一般用于外部组件扩展
     });
 
-    // 加载基础css样式
 
-    layui.link(sys_config.lmx_static_url + '/font-awesome-4.7.0/css/font-awesome.min.css?t={$Think.config.sys_config.lmx_version}'); //图标css
+    //重写console.log
+    console.log = (function (oriLogFunc) {
+        return function (obj) {
+            // 如果是调试模式开启 控制台打印
+            if (sys_config.lmx_debug) oriLogFunc.call(console,obj);
+        }
+    })(console.log);
+
 
 </script>
 

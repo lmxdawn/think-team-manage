@@ -44,6 +44,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 .lmx-left .lmx-left-nav{
     height: 100%;
     position: relative;
+    overflow-x: hidden;
 }
 
 .lmx-left .lmx-left-nav .lmx-left-nav-content{
@@ -52,7 +53,13 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     right: 0;
     overflow-y: auto;
     height: 100%;
+    width: 220px;
     /*background: #2f4050 none repeat scroll 0 0;*/
+}
+
+/*手风琴宽度*/
+.sidebar-menu{
+    width: 200px;
 }
 
 .lmx-left .lmx-left-manual {
@@ -144,7 +151,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     text-align: center;
     line-height: 29px;
     color: #999;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #ccc;
 }
 
 .lmx-nav .lmx-tab .lmx-tabitem:hover {

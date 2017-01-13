@@ -56,7 +56,6 @@ layui.use(['sidebarMenu'],function () {
             calcTaskitemsWidth();
         }
 
-
         /**
          * 当页面大小变化 调整页面元素宽高
          */

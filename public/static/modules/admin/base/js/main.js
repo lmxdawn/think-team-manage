@@ -50,8 +50,8 @@ layui.use(['sidebarMenu'],function () {
          * 调整页面宽高
          */
         function fixHeight() {
-            $lmx_main.height($(window).height() - headerHeight  - tabHeight - 2);
-            $("#lmx-left").height($(window).height());
+            $lmx_main.height($(window).height() - headerHeight  - tabHeight - 14);
+            //$("#lmx-left").height($(window).height());
             // 调整tab 宽度
             calcTaskitemsWidth();
         }
@@ -144,13 +144,13 @@ layui.use(['sidebarMenu'],function () {
                 //关闭
                 $("#lmx-left").animate({'left' : -200 + 'px'}, 300, 'swing')
                 $("#lmx-content").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
-                $("#lmx-header").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
+                //$("#lmx-header").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
                 $this.removeClass('fa-angle-left').addClass('fa-angle-right').attr('title','展开侧边栏');
             }else if ($this.hasClass('fa-angle-right')){
                 // 展开
                 $("#lmx-left").animate({'left' : 0 + 'px'}, 300, 'swing')
                 $("#lmx-content").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
-                $("#lmx-header").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
+                //$("#lmx-header").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
                 $this.removeClass('fa-angle-right').addClass('fa-angle-left').attr('title','关闭侧边栏');
             }
             return false;

@@ -14,10 +14,10 @@ namespace app\common\model;
 use think\Model;
 
 /**
- * Class AuthRule 权限规则模型
+ * Class AuthRule 菜单表模型
  * @package app\index\model
  */
-class AuthRule extends Model
+class Menu extends Model
 {
 
     // 数据完成时
@@ -56,10 +56,6 @@ class AuthRule extends Model
         }
         return self::$instance;
     }
-
-
-
-
 
 
 }

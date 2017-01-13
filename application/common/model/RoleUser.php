@@ -13,32 +13,14 @@ namespace app\common\model;
 
 use think\Model;
 
+
 /**
- * Class AuthRule 权限规则模型
+ * Class AuthGroupRule 用户角色对应表表模型
  * @package app\index\model
  */
-class AuthRule extends Model
+class RoleUser extends Model
 {
 
-    // 数据完成时
-    protected $auto = ['update_time'];
-    protected $insert = ['create_time'];
-    protected $update = [];
-
-
-    /**
-     * 设置更新时间字段
-     */
-    protected function setUpdateTimeAttr(){
-        return time();
-    }
-
-    /**
-     * 设置创建时间字段
-     */
-    protected function setCreateTimeAttr(){
-        return time();
-    }
 
     /**
      * @var object 对象实例

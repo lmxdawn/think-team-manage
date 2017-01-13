@@ -5,6 +5,7 @@ layui.link(sys_config.lmx_static_url + '/modules/admin/login/css/login.css?t='+ 
 
 layui.use([],function () {
 
+
     document.onkeydown=function(event){
         var e = event || window.event || arguments.callee.caller.arguments[0];
         if(e && e.keyCode==13){ // enter 键

@@ -17,7 +17,6 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     color: #fff;
     position: relative;
     height: 45px;
-    margin-left: 200px;
     z-index: 1000;
 }
 
@@ -26,7 +25,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     border-right: 1px solid #ccc;
     bottom: 0;
     position: absolute;
-    top: 0;
+    top: 50px;
     width: 199px;
 }
 
@@ -90,13 +89,15 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     margin-right: 0;
     margin-top: 0;
     min-height: 100%;
-    padding: 0;
+    padding-left: 10px;
+    padding-top: 10px;
+    border: 1px solid #e2e2e2;
 }
 
 
 .lmx-breadcrumbs{
-    background-color: #FAFAFA;
-    border-bottom: 1px solid #e5e5e5;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #1aa094;
     display: block;
     line-height: 36px;
     min-height: 38px;
@@ -147,13 +148,13 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 }
 
 .lmx-nav .lmx-tab .lmx-tabitem:hover {
-    background: #2f4050 none repeat scroll 0 0;
-    color: #a7b1c2;
+    background: #3C8DBC none repeat scroll 0 0;
+    color: #fff;
 }
 
 .lmx-nav .lmx-tab .lmx-tabitem.current{
-    background: #2f4050 none repeat scroll 0 0;
-    color: #a7b1c2;
+    background: #3C8DBC none repeat scroll 0 0;
+    color: #fff;
 }
 
 
@@ -184,7 +185,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 
 .lmx-main{
     overflow: hidden;
-    background: #fff none repeat scroll 0 0;
+    background: #F1F2F7 none repeat scroll 0 0;
     margin: 0;
 }
 
@@ -258,9 +259,3 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     left: 0 !important;
     right: initial !important;
 }
-
-
-
-
-
-

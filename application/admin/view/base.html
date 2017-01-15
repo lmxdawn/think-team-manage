@@ -5,7 +5,7 @@
 <head>
 
     <meta charset="utf-8">
-    <title>{block name="title"}{$Think.config.sys_config.lmx_title}--{$title}{/block}</title>
+    <title>{block name="title"}{$title ?? ''}--{$Think.config.sys_config.lmx_title ?? '后台管理'}{/block}</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
@@ -14,7 +14,9 @@
     {block name="basecss"}{include file="basecss" /}{/block}
 
     <!--CSS引用-->
-    {block name="css"}{/block}
+    {block name="css"}
+        <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/css/main.css?t={$Think.config.sys_config.lmx_version}" >
+    {/block}
 
 </head>
 

@@ -1,16 +1,25 @@
-{extend name="base" /}
 
-<!--CSS引用-->
-{block name="css"}
-{__block__}
+<!DOCTYPE html>
+<html>
+<head>
 
-    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/css/main.css?t={$Think.config.sys_config.lmx_version}" >
+    <meta charset="utf-8">
+    <title>{block name="title"}{$title ?? ''}--{$Think.config.sys_config.lmx_title ?? '后台管理'}{/block}</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="format-detection" content="telephone=no">
+
+    <!--公共css-->
+    {include file="basecss" /}
+
+    <!--CSS引用-->
+    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/index/css/main.css?t={$Think.config.sys_config.lmx_version}" >
     <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/extend/admin/sidebarMenu.css?t={$Think.config.sys_config.lmx_version}" >
 
-{/block}
+</head>
 
+<body>
 
-{block name="body"}
 
 
     <div class="lmx">
@@ -202,7 +211,8 @@
                     <ul class="lmx-tab" id="lmx-tab" style="width: 800px;">
 
                         <li class="lmx-tabitem current" app-id="0" app-url="{:url('main/index')}" app-name="首页">
-                            <span class="lmx-tabitem-text" title="首页">首页</span>
+                            <i class="fa fa-desktop"></i>
+                            <span class="lmx-tabitem-text" title="后台首页">后台首页</span>
                         </li>
 
                     </ul>
@@ -234,15 +244,15 @@
     </div>
 
 
-{/block}
+
+    <!--公共js-->
+    {include file="basejs" /}
+
+    <!--JS引用-->
+    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/index/js/main.js?t={$Think.config.sys_config.lmx_version}"></script>
 
 
 
+</body>
 
-<!--JS引用-->
-{block name="js"}
-{__block__}
-    <!--基础js-->
-    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/js/main.js?t={$Think.config.sys_config.lmx_version}"></script>
-
-{/block}
+</html>

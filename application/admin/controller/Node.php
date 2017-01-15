@@ -24,10 +24,7 @@ class Node extends Base {
     /**
      *菜单列表
      */
-    public function index(){
-
-        // 用户组模型
-        $Menu = Menu::getInstance();
+    public function index(Menu $Menu){
 
         $where = [];
         $lists = $Menu::where($where)
@@ -37,9 +34,10 @@ class Node extends Base {
             ->order(['listorder' => 'ASC','id' => 'DESC'])
             ->select();
 
-        foreach ($lists as $key => $value){
-
-        }
+        return $this->view->fetch('index',[
+            'title' => '后台菜单',
+            'lists' => $lists
+        ]);
 
     }
 

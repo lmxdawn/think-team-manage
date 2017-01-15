@@ -13,17 +13,18 @@ layui.extend({ //设定组件别名
 layui.use(['sidebarMenu'],function () {
 
     var task_item_tpl = '<li class="lmx-tabitem">' +
-        '<span class="lmx-tabitem-text" title=""></span>' +
-        '<a class="lmx-tabitem-tabclose" href="javascript:void(0);" title="点击关闭标签">' +
-        '<span></span>' +
-        '<b class="lmx-tabitem-tabclose-icon">×</b>' +
-        '</a>' +
-        '</li>';
+                            '<i class="fa"></i>' +
+                            '<span class="lmx-tabitem-text" title=""></span>' +
+                            '<a class="lmx-tabitem-tabclose" href="javascript:void(0);" title="点击关闭标签">' +
+                            '<span></span>' +
+                            '<b class="lmx-tabitem-tabclose-icon fa fa-times-circle"></b>' +
+                            '</a>' +
+                        '</li>';
 
     var appiframe_tpl='<iframe style="width: 100%; height: 100%;" frameborder="0" class="appiframe"></iframe>';
 
     var $lmx_tab = $("#lmx-tab")
-        ,tabwidth = 118
+        ,tabwidth = 120
         ,$loading = null
         ,$lmx_main = null
 
@@ -61,6 +62,7 @@ layui.use(['sidebarMenu'],function () {
          */
         $(window).resize(function(){
             fixHeight();
+
         }).resize();
 
         /**
@@ -160,7 +162,7 @@ layui.use(['sidebarMenu'],function () {
         $("body").click(function () {
 
             if (id < 10)
-                openapp('/think-team-manage/public/index.php/admin/main/index.html',id,'测试');
+                openapp('/think-team-manage/public/index.php/admin/node/index.html',id,'测试测试测试测试测试','fa-desktop');
             id ++;
 
 
@@ -175,7 +177,16 @@ layui.use(['sidebarMenu'],function () {
     })
 
 
-
+    /**
+     * 获取宽度
+     */
+    function getTabWidth() {
+        var width = 0;
+        $("#lmx-tab li").each(function (index,item) {
+            width += $(this).width() + 3;
+        })
+        return width - 2;
+    }
 
     /**
      * 调整tab栏宽度
@@ -183,8 +194,8 @@ layui.use(['sidebarMenu'],function () {
     function calcTaskitemsWidth() {
         var width = $("#lmx-tab li").length * tabwidth;
         $lmx_tab.width(width);
-        if (($(document).width()-268-tabwidth- 30 * 2) < width) {
-            $("#lmx-nav").width($(document).width() -268-tabwidth- 30 * 2);
+        if (($(document).width()-200-tabwidth- 30 * 2) < width) {
+            $("#lmx-nav").width($(document).width() -200-tabwidth- 30 * 2);
             $("#task-next,#task-pre").show();
         } else {
             $("#task-next,#task-pre").hide();
@@ -198,10 +209,11 @@ layui.use(['sidebarMenu'],function () {
      */
     function closeapp($this){
         if(!$this.is(".noclose")){
-            $this.prev().click();
+            var $box = $this.prev();
             $this.remove();
             $("#appiframe-"+$this.attr("app-id")).remove();
             calcTaskitemsWidth();
+            $box.click()
             $("#task-next").click();
         }
 
@@ -229,15 +241,17 @@ layui.use(['sidebarMenu'],function () {
      * @param url 地址
      * @param appid 菜单id
      * @param appname 菜单名称
+     * @param icon 菜单图标
      * @param refresh 是否刷新
      */
-    function openapp(url, appid, appname, refresh) {
+    function openapp(url, appid, appname, icon, refresh) {
         // 获取tab按钮
         var $app = $("#lmx-tab li[app-id='"+appid+"']");
         $("#lmx-tab .current").removeClass("current");
         if ($app.length == 0) {
             var task = $(task_item_tpl).attr("app-id", appid).attr("app-url",url).attr("app-name",appname).addClass("current");
             task.find(".lmx-tabitem-text").html(appname).attr("title",appname);
+            task.find("i.fa").addClass(icon);
             $lmx_tab.append(task);
             $(".appiframe").hide();
             $loading.show();

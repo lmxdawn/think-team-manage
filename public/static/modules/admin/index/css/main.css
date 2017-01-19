@@ -68,7 +68,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 .lmx-left-manual-switch #close::before {
     position: absolute;
     right: 5.5px;
-    top:7px;
+    top:5px;
 }
 /*关闭侧边栏按钮 end*/
 
@@ -225,14 +225,25 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     position: relative;
 }
 
+
+.lmx-main .load{
+    width: 100%;
+    height: 100%;
+    display: none;
+    background-color: #F1F2F7;
+}
+
 .lmx-main .loadSpin {
     position: absolute;
-    display: none;
+    font-size: 30px;
     top: 40%;
     left: 50%;
-    font-size: 30px;
     color: #31b4e1;
 }
+.lmx-main .loadSpin i{
+    /*margin: 20% 50%;*/
+}
+
 /*内容主体 end*/
 
 .appiframe{

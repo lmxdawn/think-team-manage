@@ -13,8 +13,9 @@
 .lmx-wrapper{
     border: medium none;
     border-radius: 3px;
-    margin: 0 auto;
+    margin-bottom: 20px;
     padding-bottom: 0;
+
 }
 
 .lmx-wrapper .tab{
@@ -69,4 +70,16 @@
 
 .tab-btn span{
     display: block;
+}
+
+/*搜索*/
+.lmx-search{
+    background-color: #ecf0f1;
+    border: 1px solid #d7e0e2;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+    min-height: 20px;
+    padding: 19px;
+    margin: 0 0 20px;
+    margin-bottom: 20px;
 }

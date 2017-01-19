@@ -157,9 +157,42 @@ layui.use(['sidebarMenu'],function () {
          * 点击刷新按钮
          */
         $("#refresh_wrapper").click(function(){
-            var $current_iframe=$("#lmx-main iframe:visible");
-            $loading.show();
-            $current_iframe[0].contentWindow.location.reload();
+            var $this = $("#lmx-tab li.current")
+                ,url = $this.attr("app-url")
+                ,appid = $this.attr("app-id");
+            $(".iframe-div").hide();
+            loadShow();//显示正在加载
+
+            var $iframe = document.getElementById("appiframe-" + appid);
+
+            $iframe.src = url;
+            // //这是jQuery 2.1.4以前版本的
+            // $iframe.load(function(){
+            //     loadHide();//隐藏正在加载
+            // });
+
+            var $load = $("#iframe-div-" + appid + " .load");
+            //定时加载
+            var $loadTime = setTimeout(function () {
+                $load.show();
+            },1500);
+            //这是兼容 IE的
+            if ($iframe.attachEvent){
+                $iframe.attachEvent("onload", function(){
+                    loadHide();//隐藏正在加载
+                    $load.hide();
+                    clearTimeout($loadTime);
+                });
+            } else {
+                $iframe.onload = function(){
+                    loadHide();//隐藏正在加载
+                    $load.hide();
+                    clearTimeout($loadTime);
+                };
+            }
+
+            $("#iframe-div-" + appid).show();
+
             return false;
         });
 
@@ -191,7 +224,7 @@ layui.use(['sidebarMenu'],function () {
         $("body").click(function () {
 
             if (id < 10)
-                openapp('/think-team-manage/public/index.php/admin/node/index.html',id,'测试测试测试测试测试','fa-desktop');
+                openapp('/think-team-manage/public/index.php/admin/node/index.html',(id < 3 ? id : 0),'测试测试测试测试测试','fa-desktop');
             id ++;
 
 
@@ -287,26 +320,29 @@ layui.use(['sidebarMenu'],function () {
         var $spinner = document.createElement('i');
         $spinner.className = 'fa fa-spinner fa-spin';
         $loadSpin.appendChild($spinner);
+        var $load = document.createElement('div');
+        $load.className = 'load';
+        $load.appendChild($loadSpin);
 
         //定时加载
         var $loadTime = setTimeout(function () {
-            $loadSpin.style.display = 'block';
+            $load.style.display = 'block';
         },1500);
         //这是兼容 IE的
         if ($appiframe.attachEvent){
             $appiframe.attachEvent("onload", function(){
                 loadHide();//隐藏正在加载
-                $loadSpin.style.display = 'none';
+                $load.style.display = 'none';
                 clearTimeout($loadTime);
             });
         } else {
             $appiframe.onload = function(){
                 loadHide();//隐藏正在加载
-                $loadSpin.style.display = 'none';
-                //clearTimeout($loadTime);
+                $load.style.display = 'none';
+                clearTimeout($loadTime);
             };
         }
-        $div.appendChild($loadSpin);
+        $div.appendChild($load);
         $div.appendChild($appiframe);
 
         document.getElementById('lmx-main').appendChild($div);
@@ -320,7 +356,7 @@ layui.use(['sidebarMenu'],function () {
         var $this = $("#lmx-tab li:eq(0)")
             ,url = $this.attr("app-url")
             ,appid = $this.attr("app-id");
-        $(".appiframe").hide();
+        $(".iframe-div").hide();
         loadShow();//显示正在加载
         // $appiframe=$(appiframe_tpl).attr("src",url).attr("id","appiframe-"+appid);
         //$appiframe.appendTo("#lmx-main");
@@ -365,31 +401,32 @@ layui.use(['sidebarMenu'],function () {
         } else {
             $app.addClass("current");
             $(".iframe-div").hide();
-            var $iframe = $("#appiframe-" + appid);
-            var src = $iframe.get(0).contentWindow.location.href;
-            //src=src.substr(src.indexOf("://")+3);
+            // var $iframe = $("#appiframe-" + appid);
+            var $iframe = document.getElementById("appiframe-" + appid);
             if(refresh === true){//刷新
                 loadShow();//显示正在加载
-                $iframe.attr("src",url);
+                $iframe.src = url;
                 // //这是jQuery 2.1.4以前版本的
                 // $iframe.load(function(){
                 //     loadHide();//隐藏正在加载
                 // });
 
-                var $loadSpin = $("#iframe-div-" + appid + " .loadSpin");
+                var $load = $("#iframe-div-" + appid + " .load");
                 //定时加载
                 var $loadTime = setTimeout(function () {
-                    $loadSpin.show();
+                    $load.show();
                 },1500);
                 //这是兼容 IE的
                 if ($iframe.attachEvent){
                     $iframe.attachEvent("onload", function(){
                         loadHide();//隐藏正在加载
+                        $load.hide();
+                        clearTimeout($loadTime);
                     });
                 } else {
                     $iframe.onload = function(){
                         loadHide();//隐藏正在加载
-                        $loadSpin.hide();
+                        $load.hide();
                         clearTimeout($loadTime);
                     };
                 }

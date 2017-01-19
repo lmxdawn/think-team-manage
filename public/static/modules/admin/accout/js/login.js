@@ -1,7 +1,5 @@
 
 
-// 登录模块 css
-layui.link(sys_config.lmx_static_url + '/modules/admin/login/css/login.css?t='+ sys_config.lmx_version);
 
 layui.use([],function () {
 

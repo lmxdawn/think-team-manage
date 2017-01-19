@@ -26,6 +26,8 @@ layui.use(['sidebarMenu'],function () {
     var $lmx_tab = $("#lmx-tab")
         ,tabwidth = 120
         ,$loading = null
+        ,$loadSpin = null
+        ,$loadTime = null //加载定时器
         ,$lmx_main = null
 
     // 手风琴菜单
@@ -40,7 +42,8 @@ layui.use(['sidebarMenu'],function () {
         //手风琴菜单
         sidebarMenu.show($('.sidebar-menu'));
 
-        $loading=$("#loading");
+        $loading=$("#loading");//正在加载
+        $loadSpin = $("#loadSpin");// 页面加载过慢显示
         $lmx_main = $("#lmx-main");
 
 
@@ -68,9 +71,34 @@ layui.use(['sidebarMenu'],function () {
         /**
          * 窗口刷新完成隐藏loading
          */
-        $("#lmx-main iframe").load(function(){
-            $loading.hide();
-        });
+        // $("#lmx-main iframe").load(function(){
+        //     loadHide();//隐藏加载
+        // });
+
+        /**
+         * 左侧收叠按钮
+         */
+        $("#lmx-left-fold").click(function () {
+           var width = 30 //需要收叠的宽度
+               ,maxWidth = 200 //最大宽度
+               ,border = 1 //边框
+            if ($("#lmx-left").width() <= width){
+                $("#lmx-left").animate({ "width": maxWidth - border + "px" }, 300, 'swing');//恢复侧边栏宽度
+                $("#lmx-content").animate({'margin-left' : maxWidth + 'px'}, 300, 'swing');//恢复内容部分左边距
+                // $(".sidebar-menu .treeview-menu").animate({'padding-left' : 5 + 'px'}, 300, 'swing');//恢复手风琴的左边距
+                $(".sidebar-menu li.header").animate({'padding-left' : 15 + 'px'}, 300, 'swing');//恢复手风琴每个栏目头部标签的左边距
+                $(".sidebar-menu > li > a").animate({'padding-left' : 15 + 'px'}, 300, 'swing');//恢复手风琴标签的左边距
+                $(".sidebar-menu .treeview-menu > li > a").animate({'padding-left' : 15 + 'px'}, 300, 'swing');//恢复手风琴标签的左边距
+            }else{
+                $("#lmx-left").animate({ "width": width + "px" }, 300, 'swing');//调整侧边栏宽度
+                $("#lmx-content").animate({'margin-left' : width + 'px'}, 300, 'swing');//调整内容部分左边距
+                // $(".sidebar-menu .treeview-menu").animate({'padding-left' : 0 + 'px'}, 300, 'swing');//调整手风琴的左边距
+                $(".sidebar-menu li.header").animate({'padding-left' : 2 + 'px'}, 300, 'swing');//调整手风琴每个栏目头部标签的左边距
+                $(".sidebar-menu > li > a").animate({'padding-left' : 5 + 'px'}, 300, 'swing');//调整手风琴标签的左边距
+                $(".sidebar-menu .treeview-menu > li > a").animate({'padding-left' : 7 + 'px'}, 300, 'swing');//调整手风琴标签的左边距
+            }
+            return false;
+        })
 
         /**
          * 点击导航栏
@@ -140,19 +168,20 @@ layui.use(['sidebarMenu'],function () {
          * 关闭展开
          */
         $("#close").click(function () {
-            var $this = $(this);
-            if ($this.hasClass('fa-angle-left')){
+            var $this = $(this)
+                ,width = $("#lmx-left").width();
+            if ($this.hasClass('fa-angle-double-left')){
                 //关闭
-                $("#lmx-left").animate({'left' : -200 + 'px'}, 300, 'swing')
+                $("#lmx-left").animate({'left' : -width-1 + 'px'}, 300, 'swing')
                 $("#lmx-content").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
                 //$("#lmx-header").animate({'margin-left' : 0 + 'px'}, 300, 'swing')
-                $this.removeClass('fa-angle-left').addClass('fa-angle-right').attr('title','展开侧边栏');
-            }else if ($this.hasClass('fa-angle-right')){
+                $this.removeClass('fa-angle-double-left').addClass('fa-angle-double-right').attr('title','展开侧边栏');
+            }else if ($this.hasClass('fa-angle-double-right')){
                 // 展开
                 $("#lmx-left").animate({'left' : 0 + 'px'}, 300, 'swing')
-                $("#lmx-content").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
+                $("#lmx-content").animate({'margin-left' : width + 'px'}, 300, 'swing')
                 //$("#lmx-header").animate({'margin-left' : 200 + 'px'}, 300, 'swing')
-                $this.removeClass('fa-angle-right').addClass('fa-angle-left').attr('title','关闭侧边栏');
+                $this.removeClass('fa-angle-double-right').addClass('fa-angle-double-left').attr('title','关闭侧边栏');
             }
             return false;
         })
@@ -219,21 +248,88 @@ layui.use(['sidebarMenu'],function () {
 
     }
 
+    // 隐藏正在加载
+    function loadHide() {
+        $loading.hide();
 
+        // $loadSpin.hide();
+        // clearTimeout($loadTime);//清除加载过慢出现的定时器
+    }
+
+    /**
+     * 显示正在加载
+     */
+    function loadShow() {
+        $loading.show();
+
+        //加载过慢出现 2 秒出现
+        // $loadTime = setTimeout(function () {
+        //     $loadSpin.show();
+        // },1500);
+    }
+
+    /**
+     * 创建Iframe
+     * @param url 加载的url地址
+     * @param appid 应用的appid
+     */
+    function createIframe(url, appid) {
+        var $appiframe = document.createElement("iframe");
+        $appiframe.id = "appiframe-" + appid;
+        $appiframe.src = url;
+        $appiframe.className = 'appiframe';
+
+        var $div = document.createElement('div');
+        $div.id = "iframe-div-" + appid;
+        $div.className = 'iframe-div';
+        var $loadSpin = document.createElement('div');
+        $loadSpin.className = 'loadSpin';
+        var $spinner = document.createElement('i');
+        $spinner.className = 'fa fa-spinner fa-spin';
+        $loadSpin.appendChild($spinner);
+
+        //定时加载
+        var $loadTime = setTimeout(function () {
+            $loadSpin.style.display = 'block';
+        },1500);
+        //这是兼容 IE的
+        if ($appiframe.attachEvent){
+            $appiframe.attachEvent("onload", function(){
+                loadHide();//隐藏正在加载
+                $loadSpin.style.display = 'none';
+                clearTimeout($loadTime);
+            });
+        } else {
+            $appiframe.onload = function(){
+                loadHide();//隐藏正在加载
+                $loadSpin.style.display = 'none';
+                //clearTimeout($loadTime);
+            };
+        }
+        $div.appendChild($loadSpin);
+        $div.appendChild($appiframe);
+
+        document.getElementById('lmx-main').appendChild($div);
+    }
 
 
     /**
      * 加载首页
      */
     function loadIndex() {
-        var $this = $("#lmx-tab li:eq(0)");
+        var $this = $("#lmx-tab li:eq(0)")
+            ,url = $this.attr("app-url")
+            ,appid = $this.attr("app-id");
         $(".appiframe").hide();
-        $loading.show();
-        $appiframe=$(appiframe_tpl).attr("src",$this.attr("app-url")).attr("id","appiframe-"+$this.attr("app-id"));
-        $appiframe.appendTo("#lmx-main");
-        $appiframe.load(function(){
-            $loading.hide();
-        });
+        loadShow();//显示正在加载
+        // $appiframe=$(appiframe_tpl).attr("src",url).attr("id","appiframe-"+appid);
+        //$appiframe.appendTo("#lmx-main");
+        // //这是jQuery 2.1.4以前版本的
+        // $appiframe.load(function(){
+        //     loadHide();//隐藏正在加载
+        // });
+
+        createIframe(url,appid);
     }
 
     /**
@@ -253,29 +349,52 @@ layui.use(['sidebarMenu'],function () {
             task.find(".lmx-tabitem-text").html(appname).attr("title",appname);
             task.find("i.fa").addClass(icon);
             $lmx_tab.append(task);
-            $(".appiframe").hide();
-            $loading.show();
-            $appiframe=$(appiframe_tpl).attr("src",url).attr("id","appiframe-"+appid);
-            $appiframe.appendTo("#lmx-main");
-            $appiframe.load(function(){
-                $loading.hide();
-            });
+            $(".iframe-div").hide();
+            loadShow();//显示正在加载
+            //$appiframe=$(appiframe_tpl).attr("src",url).attr("id","appiframe-"+appid);
+            //$appiframe.appendTo("#lmx-main");
+            // //这是jQuery 2.1.4以前版本的
+            // $appiframe.load(function(){
+            //     loadHide();//隐藏正在加载
+            // });
+
+            createIframe(url,appid);
+
             // 调整页面
             calcTaskitemsWidth();
         } else {
             $app.addClass("current");
-            $(".appiframe").hide();
-            var $iframe=$("#appiframe-"+appid);
-            var src=$iframe.get(0).contentWindow.location.href;
+            $(".iframe-div").hide();
+            var $iframe = $("#appiframe-" + appid);
+            var src = $iframe.get(0).contentWindow.location.href;
             //src=src.substr(src.indexOf("://")+3);
             if(refresh === true){//刷新
-                $loading.show();
+                loadShow();//显示正在加载
                 $iframe.attr("src",url);
-                $iframe.load(function(){
-                    $loading.hide();
-                });
+                // //这是jQuery 2.1.4以前版本的
+                // $iframe.load(function(){
+                //     loadHide();//隐藏正在加载
+                // });
+
+                var $loadSpin = $("#iframe-div-" + appid + " .loadSpin");
+                //定时加载
+                var $loadTime = setTimeout(function () {
+                    $loadSpin.show();
+                },1500);
+                //这是兼容 IE的
+                if ($iframe.attachEvent){
+                    $iframe.attachEvent("onload", function(){
+                        loadHide();//隐藏正在加载
+                    });
+                } else {
+                    $iframe.onload = function(){
+                        loadHide();//隐藏正在加载
+                        $loadSpin.hide();
+                        clearTimeout($loadTime);
+                    };
+                }
             }
-            $iframe.show();
+            $("#iframe-div-" + appid).show();
         }
 
 

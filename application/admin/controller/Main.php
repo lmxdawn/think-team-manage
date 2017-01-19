@@ -16,6 +16,10 @@ class Main extends Base
     public function index(){
 
 
+        for ($i = 0; $i <= 1000000000; $i++){
+
+        }
+
         return $this->view->fetch('index',[
             'title'     =>      '首页'
         ]);

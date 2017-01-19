@@ -1,5 +1,10 @@
 {extend name="base" /}
 
+<!--CSS引用-->
+{block name="css"}
+{__block__}
+    <link rel="stylesheet" href="{$Think.config.sys_config.lmx_static_url}/modules/admin/accout/css/login.css?t={$Think.config.sys_config.lmx_version}" >
+{/block}
 
 {block name="body"}
 {__block__}
@@ -114,7 +119,7 @@
 {block name="js"}
 {__block__}
     <!--登录模块js-->
-    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/login/js/login.js?t={$Think.config.sys_config.lmx_version}"></script>
+    <script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/accout/js/login.js?t={$Think.config.sys_config.lmx_version}"></script>
 
 {/block}
 

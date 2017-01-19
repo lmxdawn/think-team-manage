@@ -34,6 +34,10 @@ class Node extends Base {
             ->order(['listorder' => 'ASC','id' => 'DESC'])
             ->select();
 
+        for ($i = 0; $i <= 100000000; $i++){
+
+        }
+
         return $this->view->fetch('index',[
             'title' => '后台菜单',
             'lists' => $lists

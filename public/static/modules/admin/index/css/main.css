@@ -11,57 +11,34 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     position: relative;
 }
 
+/*头部*/
 .lmx-header {
-    background: #f3f3f4 none repeat scroll 0 0;
-    border-bottom: 5px solid #009688;
+    background: #373d41 none repeat scroll 0 0;
+    /*border-bottom: 5px solid #009688;*/
     color: #fff;
     position: relative;
-    height: 45px;
+    height: 50px;
     z-index: 1000;
 }
 
+/*左侧*/
 .lmx .lmx-left {
-    background-color: #2f4050;
+    background-color: #333744;
     border-right: 1px solid #ccc;
     bottom: 0;
-    position: absolute;
+    position: fixed;
     top: 50px;
     width: 199px;
 }
 
-.lmx .lmx-left::before {
-    background-color: #2f4050;
-    border-right: 1px solid #ccc;
-    bottom: 0;
-    content: "";
-    display: block;
-    position: fixed;
-    top: 0;
-    width: 200px;
-    z-index: -1;
-}
-
+/*左侧导航*/
 .lmx-left .lmx-left-nav{
     height: 100%;
     position: relative;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-.lmx-left .lmx-left-nav .lmx-left-nav-content{
-    left: 0;
-    position: absolute;
-    right: 0;
-    overflow-y: auto;
-    height: 100%;
-    width: 220px;
-    /*background: #2f4050 none repeat scroll 0 0;*/
-}
-
-/*手风琴宽度*/
-.sidebar-menu{
-    width: 200px;
-}
-
+/*关闭侧边栏按钮 start*/
 .lmx-left .lmx-left-manual {
     position: absolute;
     right: -14px;
@@ -84,13 +61,50 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     vertical-align: top;
     width: 30px;
 }
+.lmx-left-manual-switch #close:hover{
+    background-color: #449d44;
+}
 
 .lmx-left-manual-switch #close::before {
     position: absolute;
     right: 5.5px;
-    top: 5px;
+    top:7px;
+}
+/*关闭侧边栏按钮 end*/
+
+
+/*左侧导航折叠按钮 start*/
+.lmx-left-nav .lmx-left-fold{
+    -moz-user-select: none;
+    background: #4a5064 none repeat scroll 0 0;
+    color: #aeb9c2;
+    cursor: pointer;
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px !important;
+    text-align: center;
+    width: 100%;
+}
+/*左侧导航折叠按钮 end*/
+
+/*手风琴内容*/
+.lmx-left .lmx-left-nav .lmx-left-nav-content{
+    left: 0;
+    position: absolute;
+    right: 0;
+    overflow-y: auto;
+    height: 100%;
+    width: 220px;
+    /*background: #2f4050 none repeat scroll 0 0;*/
 }
 
+/*手风琴宽度*/
+.sidebar-menu{
+    width: 200px;
+}
+
+
+/*内容部分*/
 .lmx .lmx-content{
     margin-left: 200px;
     margin-right: 0;
@@ -101,7 +115,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     border: 1px solid #e2e2e2;
 }
 
-
+/*内容主体 start*/
 .lmx-breadcrumbs{
     background-color: #f2f2f2;
     border-bottom: 1px solid #1aa094;
@@ -112,12 +126,14 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     position: relative;
 }
 
+/*内容顶部*/
 .lmx-breadcrumbs .lmx-nav{
     float: left;
     overflow: hidden;
     position: relative;
 }
 
+/*向左按钮*/
 .lmx-breadcrumbs .lmx-task-changebt{
     color: #999;
     cursor: pointer;
@@ -133,8 +149,10 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 .lmx-breadcrumbs .lmx-task-changebt:hover {
     background: #dbe5e7 none repeat scroll 0 0;
 }
+/*向左按钮*/
 
 
+/*顶部导航*/
 .lmx-nav .lmx-tab{
 }
 
@@ -151,18 +169,20 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     position: relative;
     text-align: center;
     line-height: 29px;
-    color: #999;
+    color: #000;
     border-right: 1px solid #ccc;
 }
 
 .lmx-nav .lmx-tab .lmx-tabitem:hover {
-    background: #3C8DBC none repeat scroll 0 0;
-    color: #fff;
+    /*background: #3C8DBC none repeat scroll 0 0;*/
+    background: #ecf0f1 none repeat scroll 0 0;
+    /*color: #fff;*/
 }
 
 .lmx-nav .lmx-tab .lmx-tabitem.current{
-    background: #3C8DBC none repeat scroll 0 0;
-    color: #fff;
+    /*background: #3C8DBC none repeat scroll 0 0;*/
+    background: #ecf0f1 none repeat scroll 0 0;
+    /*color: #fff;*/
 }
 
 
@@ -175,7 +195,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     font-size: 12px;
 }
 
-
+/*关闭导航按钮*/
 .lmx-tabitem .lmx-tabitem-tabclose{
     cursor: pointer;
     position: absolute;
@@ -197,12 +217,37 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
 }
 
 
+/*iframe页面主体*/
 .lmx-main{
     overflow: hidden;
     background: #F1F2F7 none repeat scroll 0 0;
     margin: 0;
+    position: relative;
 }
 
+.lmx-main .loadSpin {
+    position: absolute;
+    display: none;
+    top: 40%;
+    left: 50%;
+    font-size: 30px;
+    color: #31b4e1;
+}
+/*内容主体 end*/
+
+.appiframe{
+    height: 100%;
+    width: 100%;
+    border: 0;
+}
+
+.lmx-main .iframe-div{
+    height: 100%;
+    width: 100%;
+}
+
+
+/*底部*/
 .lmx .lmx-footer{
     height: auto;
     line-height: 26px;
@@ -216,6 +261,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     text-align: center;
 }
 
+/*正在加载*/
 #loading {
     background: rgba(0, 0, 0, 0) url("../images/loadingbg.png") no-repeat scroll 0 0;
     color: #fff;
@@ -246,7 +292,9 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     top: 0;
     width: 26px;
 }
+/*正在加载*/
 
+/*刷新页面按钮*/
 #right_tools_wrapper {
     float: right;
     margin-right: 9px;
@@ -264,6 +312,7 @@ blockquote, body, button, dd, div, dl, dt, form, h1, h2, h3, h4, h5, h6, input, 
     height: 24px;
     width: 24px;
 }
+/*刷新页面按钮*/
 
 /*设置调试*/
 #think_page_trace_open {

@@ -6,7 +6,7 @@
 // +----------------------------------------------------------------------
 // | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
 // +----------------------------------------------------------------------
-// | Author: Byron Sampson <lmxdawn@gmail.com>
+// | Author: 黎明晓 <lmxdawn@gmail.com>
 // +----------------------------------------------------------------------
 
 namespace app\common\validate;

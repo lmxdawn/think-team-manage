@@ -83,3 +83,45 @@
     margin: 0 0 20px;
     margin-bottom: 20px;
 }
+.lmx-search .search-input{
+    width: 150px;
+    display:inline;
+    margin-right: 10px;
+}
+
+    /*列表*/
+.lmx-table{
+
+}
+
+/*信息*/
+.lmx-info{
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    padding-bottom: 0;
+}
+
+.info-header{
+    border-bottom: 1px solid #eeeff1;
+    height: 50px;
+    padding: 0 20px 0 30px;
+    width: 100%;
+}
+.info-header .info-title{
+    color: #858585;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 50px;
+}
+
+.info-content{
+    padding: 20px 20px 150px;
+}
+
+.info-content #theForm{
+    width: 33.3333%;
+}
+

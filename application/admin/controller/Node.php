@@ -34,10 +34,6 @@ class Node extends Base {
             ->order(['listorder' => 'ASC','id' => 'DESC'])
             ->select();
 
-        for ($i = 0; $i <= 100000000; $i++){
-
-        }
-
         return $this->view->fetch('index',[
             'title' => '后台菜单',
             'lists' => $lists
@@ -51,8 +47,8 @@ class Node extends Base {
      */
     public function add(){
 
-//        if ($this->request->isPost()){
-        if (1){
+        if ($this->request->isPost()){
+//        if (1){
             $data = $this->request->post();
             $data = [
                 'app' => 'index',
@@ -105,6 +101,11 @@ class Node extends Base {
 
             //添加页面
 
+            return $this->view->fetch('add',[
+                'title' => '添加菜单',
+            ]);
+
+
         }
 
     }
@@ -124,8 +125,8 @@ class Node extends Base {
             )
             ->find();
 
-//        if ($this->request->isPost()){
-        if (1){
+        if ($this->request->isPost()){
+//        if (1){
             $data = $this->request->post();
             $data = [
                 'id' => '22',

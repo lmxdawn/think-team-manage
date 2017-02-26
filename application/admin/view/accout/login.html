@@ -31,25 +31,25 @@
                             <div id="login_err_msg" style="height: 30px;line-height: 30px;text-align: center;"></div>
                             <form action="" accept-charset="utf-8" id="login_form" class="loginForm" method="post" onsubmit="return false;">
                                 <div class="uinArea" id="uinArea">
-                                    <label class="input-tips" for="username">帐号：</label>
+                                    <label class="input-tips" for="user_name">帐号：</label>
                                     <div class="inputOuter" id="uArea">
-                                        <input type="text" id="username" name="username" class="inputstyle" placeholder="账号"/>
+                                        <input type="text" id="user_name" name="user_name" class="inputstyle" placeholder="账号/邮箱"/>
                                     </div>
                                 </div>
-                                <div class="pwdArea" id="pwdArea">
-                                    <label class="input-tips" for="password">密码：</label>
-                                    <div class="inputOuter" id="pArea">
-                                        <input type="password" id="password" name="p" class="inputstyle" placeholder="密码"/>
+                                <div class="pwdArea" >
+                                    <label class="input-tips" for="user_pass">密码：</label>
+                                    <div class="inputOuter">
+                                        <input type="password" id="user_pass" name="user_pass" class="inputstyle" placeholder="密码"/>
                                     </div>
                                 </div>
 
-                                <div class="pwdArea" id="pwdArea">
-                                    <label class="input-tips" for="password" style="font-size:12px;">验证码：</label>
-                                    <div class="inputOuter" id="pArea">
+                                <div class="pwdArea">
+                                    <label class="input-tips" for="code" style="font-size:12px;">验证码：</label>
+                                    <div class="inputOuter">
 
 
                                         <input class="inputstyle" placeholder="验证码" style="color:black;width:70px;float:left;margin:0px 0px;" name="code" id="code" type="text">
-                                        <img src="http://snake.baiyf.com/admin/login/checkverify.html" onclick="javascript:this.src='http://snake.baiyf.com/admin/login/checkverify.html?tm='+Math.random();" style="float:right;cursor: pointer;height:31px;width:100px">
+                                        <img src="{:captcha_src()}" onclick="javascript:this.src='{:captcha_src()}?tm='+Math.random();" style="float:right;cursor: pointer;height:31px;width:100px">
                                     </div>
 
                                 </div>

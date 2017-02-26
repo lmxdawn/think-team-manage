@@ -12,8 +12,8 @@ return [
     // +----------------------------------------------------------------------
 
 
-    'lmx_static_url'        =>      "//localhost/public/static" //静态文件路径 (这个是动态配置)
+    'lmx_static_url'        =>      "//localhost/think-team-manage/public/static" //静态文件路径 (这个是动态配置)
     ,'lmx_static_debug'       =>      false //静态文件的调试模式
-    ,'lmx_version'          =>       '20170100' // 版本号
+    ,'lmx_version'          =>       '2017010853' // 版本号
     ,'lmx_title'            =>      '羽心后台管理系统' //网站名称
 ];

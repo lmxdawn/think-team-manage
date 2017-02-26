@@ -12,6 +12,8 @@
 namespace app\admin\controller;
 
 
+use app\common\model\Menu;
+
 /**
  * Class Index 后台模块首页
  * @package app\admin\controller
@@ -24,9 +26,22 @@ class Index extends Base
      */
     public function index(){
 
+        //菜单列表
+        $where = [];
+        $where['status'] = 1;
+        $menu_lists =  Menu::getMergeNode($where);
+
+        //快捷菜单
+        $quick_menu = [
+            ['id' => '1','title' => '网站首页','url' => '','icon' => 'fa-user','type' => 'layui-btn-danger']
+        ];
+
+        //dump($menu_lists);exit;
 
         return $this->view->fetch('index',[
-            'title'     =>      '首页'
+            'title'     =>      '首页',
+            'menu_lists' => $menu_lists,
+            'quick_menu' => $quick_menu,
         ]);
     }
 }

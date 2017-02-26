@@ -17,7 +17,7 @@
                     </li>
                     <li class="">
                         <i class=""></i>
-                        <span>后台菜单12</span>
+                        <span><a href="{:Url('add')}">添加菜单</a></span>
                     </li>
                 </ul>
             </blockquote>
@@ -30,54 +30,67 @@
 
     </div>
 
-    <!--搜索-->
-    <div class="lmx-search">
-        <form class="form-search" method="get" action="">
-            <div class="layui-form-item">
-                测试1：
-                <input type="text" name="test" required lay-verify="required" placeholder="请输入测试1" autocomplete="off" class="search-input layui-input">
-                测试2：
-                <input type="text" name="test" required lay-verify="required" placeholder="请输入测试2" autocomplete="off" class="search-input layui-input">
-                <button class="layui-btn" lay-submit="" lay-filter="theForm">搜索</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
-        </form>
-    </div>
 
 
     <!--表格-->
     <div class="lmx-table">
         <table class="layui-table">
             <colgroup>
-                <col width="150">
-                <col width="200">
-                <col>
+                <col width="100">
+                <col width="100">
+                <col width="300">
+                <col width="300">
+                <col width="100">
+                <col width="100">
+                <col width="220">
             </colgroup>
             <thead>
-            <tr>
-                <th>昵称</th>
-                <th>加入时间</th>
-                <th>签名</th>
-            </tr>
+                <tr>
+                    <th>编号</th>
+                    <th>排序</th>
+                    <th>名称</th>
+                    <th>链接</th>
+                    <th>状态</th>
+                    <th>自动更新</th>
+                    <th>操作</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>贤心</td>
-                <td>2016-11-29</td>
-                <td>人生就像是一场修行</td>
-            </tr>
-            <tr>
-                <td>贤心</td>
-                <td>2016-11-29</td>
-                <td>人生就像是一场修行</td>
-            </tr>
+                {volist name='lists' id='vo'}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.listorder}</td>
+                        <td>{$vo.title_show}</td>
+                        <td>{$vo.app}/{$vo.model}/{$vo.action}</td>
+                        <td>{$vo.status? '<font color="red">√</font>' : '<font color="red">╳</font>'}</td>
+                        <td>{$vo.is_update? '是' : '否'}</td>
+                        <td>
+                            <a class="layui-btn layui-btn-small" href="{:Url('add',['parent_id' => $vo.id])}" title="添加子菜单"><i class="layui-icon">&#xe608;</i></a>
+                            <a class="layui-btn layui-btn-small" href="{:Url('edit',['id' => $vo.id])}" title="编辑"><i class="layui-icon">&#xe642;</i></a>
+                            <a class="layui-btn layui-btn-small layui-btn-danger delete" href="{:Url('delete')}" data-id="{$vo.id}" title="删除"><i class="layui-icon">&#xe640;</i></a>
+                        </td>
+                    </tr>
+                {/volist}
             </tbody>
         </table>
+
+
     </div>
 
 
 </section>
 
 {/block}
+
+
+<!--页面JS脚本-->
+{block name="js"}
+{__block__}
+
+<script src="{$Think.config.sys_config.lmx_static_url}/modules/admin/base/js/main.js?t={$Think.config.sys_config.lmx_version}"></script>
+
+
+{/block}
+
 
 

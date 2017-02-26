@@ -39,34 +39,41 @@ layui.use([],function () {
             lock = true;
             var $login_err_msg = $("#login_err_msg");
             $login_err_msg.hide();
-            var username = $('#username').val();
-            var password = $('#password').val();
-            var code = $('#code').val();
-            if (username == ''){
+            var user_name = $('#user_name').val();
+            var user_pass = $('#user_pass').val();
+            var $code = $('#code')
+                ,code = $code.val();
+            if (user_name == ''){
                 $login_err_msg.show().html("<span style='color:red'>请输入用户名</span>");
+                $('#user_name').focus();
                 return false;
             }
-            if (password == ''){
+            if (user_pass == ''){
                 $login_err_msg.show().html("<span style='color:red'>请输入密码</span>");
+                $('#user_pass').focus();
                 return false;
             }
             if (code == ''){
                 $login_err_msg.show().html("<span style='color:red'>请输入验证码</span>");
+                $code.focus();
                 return false;
             }
 
             $('#login_btn').removeClass('btn-success').addClass('btn-danger').val('登陆中...');
             var url = $("#loginForm").attr('action');
-            $.post(url,{'username':username, 'password':password, 'code':code},function(data){
+            $.post(url,{'user_name':user_name, 'user_pass':user_pass, 'code':code},function(res){
                 lock = false;
                 $('#login_btn').val('登录').removeClass('btn-danger').addClass('btn-success');
-                if(data.code!=1){
-                    $login_err_msg.show().html("<span style='color:red'>"+data.msg+"</span>");
+                if(res.code!=1){
+                    $login_err_msg.show().html("<span style='color:red'>"+res.msg+"</span>");
+                    $code.val('');
+                    $code.next().click();
                     return false;
                 }else{
-                    window.location.href=data.data;
+                    top.window.location.href = res.url;
                 }
             });
+
             return false;
 
         });

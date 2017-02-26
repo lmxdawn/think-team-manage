@@ -1,38 +1,57 @@
 {extend name="base" /}
 
+{block name="css"}
+{__block__}
+
+<style>
+    .system{
+        margin: 10px 0 10px 25px;
+        padding: 0;
+    }
+    .system li{
+        list-style: outside none none;
+        line-height: 30px;
+    }
+    .system li em{
+        float: left;
+        font-style: normal;
+        width: 120px;
+    }
+    .system li span{
+
+    }
+</style>
+
+{/block}
 
 {block name="body"}
 
 <section class="lmx-larry-box">
-    <div class="layui-tab-item layui-show">
-        <div class="layui-main">
-            <div class="layui-elem-quote">
-                <p>Layui - 精心为你雕dddd琢</p>
-            </div>
+    <fieldset class="layui-elem-field">
+        <legend>系统通知</legend>
+        <div class="system">
+            <ul>
+                <li>
+                    <em>社区</em>
+                    <span>社区</span>
+                </li>
+            </ul>
         </div>
-    </div>
+    </fieldset>
 
-    <ul class="layui-nav layui-nav-tree" lay-filter="docDemoTabBrief">
-        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
-        <li class="layui-nav-item layui-nav-itemed">
-            <a href="javascript:;">默认展开</a>
-            <dl class="layui-nav-child">
-                <dd><a href="javascript:;">选项1</a></dd>
-                <dd><a href="javascript:;">选项2</a></dd>
-                <dd><a href="">跳转</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">解决方案</a>
-            <dl class="layui-nav-child">
-                <dd><a href="">移动模块</a></dd>
-                <dd><a href="">后台模版</a></dd>
-                <dd><a href="">电商平台</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item"><a href="">产品</a></li>
-        <li class="layui-nav-item"><a href="">大数据</a></li>
-    </ul>
+    <fieldset class="layui-elem-field">
+        <legend>系统信息</legend>
+        <div class="system">
+            <ul>
+                {volist name='config' id='vo'}
+                <li>
+                    <em>{$vo.name}</em>
+                    <span>{$vo.value}</span>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </fieldset>
 
 
 

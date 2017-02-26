@@ -21,14 +21,13 @@ layui.define(function(exports){ //提示：组件也可以依赖其它组件，�
                 //If the menu is not visible
                 else if ((checkElement.is('.treeview-menu')) && (!checkElement.is(':visible'))) {
                     //Get the parent menu
-                    var parent = $this.parents('ul').first();
+                    var parent = $this.parent('ul').first();
                     //Close all open menus within the parent
-                    var ul = parent.find('ul:visible').slideUp(animationSpeed);
+                    //var ul = parent.find('ul:visible').slideUp(animationSpeed);
                     //Remove the menu-open class from the parent
-                    ul.removeClass('menu-open');
+                    //ul.removeClass('menu-open');
                     //Get the parent li
                     var parent_li = $this.parent("li");
-
                     //Open the target menu and add the menu-open class
                     checkElement.slideDown(animationSpeed, function() {
                         //Add the class active to the parent li

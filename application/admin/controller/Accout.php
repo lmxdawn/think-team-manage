@@ -11,12 +11,17 @@
 
 namespace app\admin\controller;
 
+use app\common\model\Users;
+use think\Controller;
+use think\Session;
+use think\Url;
+
 
 /**
  * Class Login 账户模块
  * @package app\admin\controller
  */
-class Accout extends Base
+class Accout extends Controller
 {
 
     /**
@@ -24,9 +29,63 @@ class Accout extends Base
      */
     public function login(){
 
+        if ($this->request->isPost()){
 
-        return $this->view->fetch('login',[
-            'title'     =>      '登录'
-        ]);
+            $data = $this->request->post();
+
+            $result = $this->validate($data,'Users.login');
+            if (true !== $result){
+                //数据验证失败
+                $this->error($result);
+            }
+
+            $where = [];
+            $where['user_name'] = $data['user_name'];
+            $whereOr['user_email'] = $data['user_name'];
+            $user = Users::where($where)
+                ->whereOr($whereOr)
+                ->find();
+
+            if (empty($user) || Users::getPass($data['user_pass']) != $user->user_pass){
+                $this->error('用户名和密码不匹配');
+            }
+
+            if ($user->user_status != '正常' || $user->user_type != 1){
+                $this->error('当前用户已被禁用或没权限，请联系管理员');
+            }
+
+            $admin_user = [];
+            $admin_user['id'] = $user->id;
+            $admin_user['user_name'] = $user->user_name;
+            $admin_user['avatar'] = $user['avatar'];
+
+            Session::set('admin_user',$admin_user);
+
+            //更新用户信息
+            Users::where(['id' => $user->id])->update([
+                'last_login_time'   =>  time(),
+                'last_login_ip'     =>  $this->request->ip()
+            ]);
+
+            $url = Url::build('index/index');
+
+            $this->success('登录成功', $url);
+
+        }else{
+
+            return $this->view->fetch('login',[
+                'title'     =>      '登录'
+            ]);
+        }
+
+
+    }
+
+    /**
+     * 退出登录
+     */
+    public function logout(){
+        Session::delete('admin_user');
+        $this->success('退出成功', 'admin/accout/login');
     }
 }

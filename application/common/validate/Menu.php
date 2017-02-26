@@ -26,7 +26,7 @@ class Menu extends Validate
         'app'      =>      'require|max:20'
         ,'model'     =>      'require|max:20'
         ,'action'     =>      'require|max:20'
-        ,'name'    =>      'require|max:50'
+        ,'title'    =>      'require|max:50'
     ];
 
     //验证提示信息
@@ -37,8 +37,8 @@ class Menu extends Validate
         ,'model.max'         => '控制器名称长度不能超过20个字符'
         ,'action.require'      => '操作名称不能为空'
         ,'action.max'         => '操作名称长度不能超过20个字符'
-        ,'name.require'      => '菜单名称不能为空'
-        ,'name.max'         => '菜单名称长度不能超过50个字符'
+        ,'title.require'      => '菜单名称不能为空'
+        ,'title.max'         => '菜单名称长度不能超过50个字符'
     ];
 
     //验证场景 scene = ['edit'=>'name1,name2,...']

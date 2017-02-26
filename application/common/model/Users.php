@@ -12,6 +12,8 @@
 namespace app\common\model;
 
 use think\Model;
+use think\Session;
+use traits\model\SoftDelete;
 
 /**
  * Class Member 用户信息表模型
@@ -19,6 +21,10 @@ use think\Model;
  */
 class Users extends Model
 {
+
+    use SoftDelete;
+    protected $deleteTime = 'delete_time';//软删除
+
 
     // 数据完成时
     protected $auto = [];
@@ -51,8 +57,32 @@ class Users extends Model
     }
 
 
+    /**
+     * 返回加密后的密码
+     * @param $pwd
+     * @return string
+     */
+    public static function getPass($pwd){
+        return md5(md5($pwd));
+    }
 
+    /**
+     * 获取登录用户的信息
+     * @return mixed
+     */
+    public static function getAdmin(){
+        return Session::get('admin_user');
+    }
 
-
+    /**
+     * 获取器
+     * @param $value
+     * @return mixed
+     */
+    public function getUserStatusAttr($value)
+    {
+        $status = [0=>'禁用',1=>'正常',2=>'未验证'];
+        return $status[$value];
+    }
 
 }

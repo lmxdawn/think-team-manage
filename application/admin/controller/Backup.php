@@ -416,7 +416,7 @@ class Backup extends Base {
     private function _make_head($vol)
     {
         $date = date('Y-m-d H:i:s', time());
-        $head = "-- ThinkCMF SQL Dump Program\r\n" . "-- \r\n" . "-- DATE : " . $date . "\r\n" .
+        $head = "-- lmxdawn SQL Dump Program\r\n" . "-- \r\n" . "-- DATE : " . $date . "\r\n" .
             "-- Vol : " . $vol . "\r\n";
         return $head;
     }
@@ -575,7 +575,7 @@ class Backup extends Base {
         $values = array_values($values);
         foreach ($values as $k => $v)
         {
-            $v = ($v === null) ? 'null' : "'" . $v . "'";
+            $v = ($v === null || $v == '') ? 'null' : "'" . $v . "'";
             $str = ($k == 0) ? $str . $v : $str . ',' . $v;
         }
         return $str;

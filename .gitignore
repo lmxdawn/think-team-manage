@@ -3,4 +3,5 @@ composer.lock
 runtime/cache/*
 runtime/log/*
 runtime/temp/*
+data/*
 *.log

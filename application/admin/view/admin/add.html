@@ -67,7 +67,7 @@
                     <label class="layui-form-label">角色</label>
                     <div class="layui-input-block">
                         {volist name='role_lists' id='vo'}
-                            <input type="checkbox" name="role_id[1]" title="{$vo.name}" value="{$vo.id}" {$vo.checked ? 'checked' : ''}>
+                            <input type="checkbox" name="role_id[{$vo.id}]" title="{$vo.name}" value="{$vo.id}" {$vo.checked ? 'checked' : ''}>
                         {/volist}
                     </div>
                 </div>

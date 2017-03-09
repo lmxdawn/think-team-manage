@@ -285,7 +285,7 @@ function closeapp($this){
     if(!$this.is(".noclose")){
         var $box = $this.prev();
         $this.remove();
-        $("#appiframe-"+$this.attr("app-id")).remove();
+        $("#iframe-div-"+$this.attr("app-id")).remove();
         calcTaskitemsWidth();
         $box.click()
         $("#task-next").click();

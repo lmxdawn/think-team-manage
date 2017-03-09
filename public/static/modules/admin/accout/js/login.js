@@ -36,7 +36,6 @@ layui.use([],function () {
             if(lock){
                 return;
             }
-            lock = true;
             var $login_err_msg = $("#login_err_msg");
             $login_err_msg.hide();
             var user_name = $('#user_name').val();
@@ -58,7 +57,7 @@ layui.use([],function () {
                 $code.focus();
                 return false;
             }
-
+            lock = true;
             $('#login_btn').removeClass('btn-success').addClass('btn-danger').val('登陆中...');
             var url = $("#loginForm").attr('action');
             $.post(url,{'user_name':user_name, 'user_pass':user_pass, 'code':code},function(res){
